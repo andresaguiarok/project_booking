@@ -1,0 +1,17 @@
+{
+  "name": "proyecto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.3",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.2",
+    "socket.io": "^4.7.4"
+  }
+}
