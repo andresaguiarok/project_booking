@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const bookingsCollection = 'Bookings'
+const collection = 'bookings'
 
 const bookingSchema = new Schema({
     day: {
@@ -18,4 +18,8 @@ const bookingSchema = new Schema({
     }
 })
 
-const bookingModel = model()
+const bookingModel = model(collection, bookingSchema)
+
+module.exports ={ 
+    bookingModel
+}
