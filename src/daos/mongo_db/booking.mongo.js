@@ -1,9 +1,20 @@
+const { bookingModel } = require("../models/booking.model")
+
 class bookingDao {
 
     async get(){
-        return { objeto: 1, message: "objeto de prueba" }
+        try {
+            return await bookingModel.find()
+        } catch (error) {
+            console.log(error);
+        }
     }
-    async getID(){
+    async getID(bid){
+        try {
+            return await bookingModel.findOne({_id: bid})
+        } catch (error) {
+            console.log(error)
+        }
 
     }
     async post(){
