@@ -9,16 +9,20 @@ class bookingDao {
             console.log(error);
         }
     }
-    async getID(bid){
+    async getID(data){
         try {
-            return await bookingModel.findOne({_id: bid})
+            return await bookingModel.findOne(data)
         } catch (error) {
             console.log(error)
         }
 
     }
-    async post(){
-
+    async post(postBooking){
+        try {
+            return await bookingModel.create(postBooking)
+        } catch (error) {
+            console.log(error);
+        }
     }
     async updateID(){
 
