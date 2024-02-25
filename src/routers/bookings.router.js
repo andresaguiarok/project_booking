@@ -12,37 +12,39 @@ router.get('/', async(req, res) => {
     : res.status(404).send({status: 'error', message: 'reservations are not available'})
 })
 
-router.get('/:bid', async(req, res) => {
-    const { bid } = req.params
-    const bookingID = await dao.getID(bid)
+router.get('/:_id', async(req, res) => {
+    const { _id } = req.params
+    const bookingID = await dao.getID({_id})
 
     bookingID 
     ? res.status(200).send({status: 'success', payload: bookingID})
     : res.status(404).send({status: 'error', message: 'the requested reservation was not found'})
 })
 
-router.post('/', (req, res) => {
-    const { email, day, schedule} = req.body
+router.post('/', async(req, res) => {
+    const requestBooking = req.body
+    let {email, day, schedule} = requestBooking
 
-    if (!email) return res.status(404).send({
-        message: 'error',
-        reason: 'enter the email'
+    for (const key in requestBooking) {
+        if(!requestBooking[key]){
+            return res.status(404).send({status:'error', message:`enter the ${key}`})
+        }
+    }
+
+    if(await dao.getID({schedule})) return res.status(404).send({
+        status: 'error', 
+        message: 'this time is not available'
     })
 
-    if (!day) return res.status(404).send({
-        message: 'error',
-        reason: 'enter the day'
-    })
+    const postBooking = await dao.post({email, day, schedule})
 
-    if(!schedule) return res.status(404).send({
-        message: 'error',
-        reason: 'enter the schedule'
-    })
+    postBooking 
+    ? res.send({stauts: 'success', message: 'the reservation was created successfully.', payload: email, day, schedule})
+    : res.send({status: 'error',message: 'An error occurred while creating the reservation'})
+})
 
-    res.send({
-        message: 'HOLA , ESTO CREARIA UNA RESERVA',
-        payload: email, day, schedule
-    })
+router.put('/:bid', (req, res) => {
+
 })
 
 router.delete('/:bid', (req, res) => {
