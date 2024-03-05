@@ -8,7 +8,7 @@ class bookingDao {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     async getID(data){
         try {
@@ -17,7 +17,7 @@ class bookingDao {
             console.log(error);
         }
 
-    }
+    };
 
     async post(postBooking){
         try {
@@ -25,7 +25,7 @@ class bookingDao {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     async updateID(){
 
@@ -36,11 +36,15 @@ class bookingDao {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     async delete(){
-
-    }
+        try {
+            return await bookingModel.deleteMany();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 }
 
 module.exports = {
