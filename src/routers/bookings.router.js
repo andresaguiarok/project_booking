@@ -57,11 +57,15 @@ router.delete('/:_id', async(req, res) => {
 
     bookingDelete
     ? res.status(200).send({status:'success', message:'reservation was removed successfully'})
-    : res.status(404).send({status:'error', message:'An error occurred while deleting the reservation'});
+    : res.status(404).send({status:'error', message:'an error occurred while deleting the reservation'});
 })
 
-router.delete('/', (req, res) => {
-    res.send('HOLA , ESTO ELIMINARIA UNA RESERVA')
+router.delete('/', async(req, res) => {
+    const deleteMany = await dao.delete()
+
+    deleteMany 
+    ? res.status(200).send({status:'success', message: 'all reservations have been removed'}) 
+    : res.status(404).send({status:'error', message:'an error occurred and the reservations could not be deleted.'})
 })
 
 module.exports = router
