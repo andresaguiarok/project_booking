@@ -43,8 +43,19 @@ router.post('/', async(req, res) => {
     : res.send({status:'error',message: 'An error occurred while creating the reservation'});
 })
 
-router.put('/:bid', (req, res) => {
+router.put('/:_id', async(req, res) => {
+    const { _id } = req.params;
+    const {schedule, day} = req.body;
 
+    if(!schedule) return res.status(404).send({status:'error', message:'enter a time'});
+
+    if(!day) return res.status(404).send({status:'error', message:'enter a date'});
+
+    const bookingUpdate = await dao.updateID({_id , schedule, day});
+
+    bookingUpdate
+    ?res.status(200).send({status:'success', message:'the reservation has been updated.', payload: bookingUpdate})
+    :res.status(404).send({status:'error', message:'an error occurred and the reservation could not be updated'});
 })
 
 router.delete('/:_id', async(req, res) => {
