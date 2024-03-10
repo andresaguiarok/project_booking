@@ -27,7 +27,12 @@ class bookingDao {
         }
     };
 
-    async updateID(){
+    async updateID(bookingUpdate){
+        try {
+            return await bookingModel.updateOne(bookingUpdate)
+        } catch (error) {
+            console.log(error);
+        }
 
     }
     async deleteID(id){
