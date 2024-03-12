@@ -1,11 +1,9 @@
-const {Schema, model} = require('mongoose')
-
-const collection = 'bookings'
+const {Schema, model} = require('mongoose');
+const collection = 'bookings';
 
 const bookingSchema = new Schema({
     day: {
         type: Date,
-        required: true
     },
     schedule: {
         type: String,
@@ -16,10 +14,10 @@ const bookingSchema = new Schema({
         required: true,
         unique: true
     }
-})
+});
 
-const bookingModel = model(collection, bookingSchema)
+const bookingModel = model(collection, bookingSchema);
 
 module.exports ={ 
     bookingModel
-}
+};
