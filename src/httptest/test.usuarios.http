@@ -1,0 +1,16 @@
+GET http://localhost:8080/api/users HTTP/1.1
+
+###
+GET http://localhost:8080/api/users/:_id HTTP/1.1
+
+###
+POST http://localhost:8080/api/users HTTP/1.1
+
+###
+PUT http://localhost:8080/api/users/:_id HTTP/1.1
+
+###
+DELETE http://localhost:8080/api/users/:_id HTTP/1.1
+
+###
+DELETE http://localhost:8080/api/users HTTP/1.1
