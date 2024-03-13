@@ -1,0 +1,30 @@
+GET http://localhost:8080/api/bookings HTTP/1.1
+
+###
+GET http://localhost:8080/api/bookings/65db9441ed64311b3c963d78 HTTP/1.1
+
+###
+POST  http://localhost:8080/api/bookings HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "attrtrsd@mail.com",
+    "day": "657567",
+    "schedule": "3rew23245765555"
+
+}
+
+###
+PUT http://localhost:8080/api/bookings/65e7af3b7ca38dc3444d4818 HTTP/1.1
+Content-Type: application/json
+
+{
+    "schedule": "11:30",
+    "day": "2024-01-01T00:10:57.567+00:00"
+}
+
+###
+DELETE  http://localhost:8080/api/bookings/65e4fab3a3e9cc82eebedad4 HTTP/1.1
+
+###
+DELETE http://localhost:8080/api/bookings HTTP/1.1
