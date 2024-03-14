@@ -1,12 +1,24 @@
 const Router = require('express');
+const { UserDao } = require('../daos/mongo_db/user.mongo.js');
 const router = Router();
+const uDao = new UserDao();
 
-router.get('/', (req, res) => {
-    res.send('Esto busca a todos los usuarios');
+
+router.get('/', async(req, res) => {
+    const users = await uDao.get();
+    
+    users 
+    ? res.status(200).send({status:'success', payload: users}) 
+    : res.status(404).send({status:'error', message:'no user record found'});
 });
 
-router.get('/:_id', (req, res) => {
-    res.send('Esto busca a un usuarios especifico');
+router.get('/:_id', async(req, res) => {
+    const { _id } = req.params;
+    const user = await uDao.getID({_id});
+
+    user
+    ? res.status(200).send({status:'success', payload: user}) 
+    : res.status(404).send({status:'error', message:'the user was not found'});
 });
 
 router.post('/', (req, res) => {
