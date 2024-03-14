@@ -1,7 +1,7 @@
 GET http://localhost:8080/api/users HTTP/1.1
 
 ###
-GET http://localhost:8080/api/users/:_id HTTP/1.1
+GET http://localhost:8080/api/users/65f3877b1627d14d1290a13 HTTP/1.1
 
 ###
 POST http://localhost:8080/api/users HTTP/1.1
